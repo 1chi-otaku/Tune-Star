@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+
+
+    body{
+        background-color: #181818;
+        color: white;
+        font-family: 'Urbanist', sans-serif;
+    }
+    .parent {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 0.2fr 0.3fr 0.2fr repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .div1 {
+        background-color: #181818;
+        grid-area: 1 / 1 / 7 / 2;
+
+    }
+
+    .div2 {
+        background-color: #181818;
+        grid-area: 1 / 5 / 7 / 6;
+
+    }
+
+    .div3 {
+        grid-area: 1 / 2 / 2 / 5;
+        height: 30px;
+
+    }
+
+    .div4 {
+        font-size: 48px;
+        color:white;
+        grid-area: 2 / 2 / 3 / 5;
+    }
+
+    .div5 {
+        grid-area: 3 / 2 / 4 / 5;
+
+    }
+
+    .div6 {
+        grid-area: 4 / 2 / 6 / 5;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+    }
+
+    .div7 {
+        grid-area: 6 / 2 / 7 / 5;
+    }
+
+    .music-card {
+        width: calc(20%-38px);
+        margin-right: 23px;
+        margin-bottom: 16px;
+        overflow: hidden;
+        font-size: 10px;
+    }
+
+    .placeh {
+            background-color: red;
+            width: 165px;
+            height: 165px;
+        }
+
+    .music-info {
+    }
+
+    .song-name, .artist-name {
+        margin: 5px 0;
+        font-weight: bold;
+        white-space: nowrap; 
+        text-overflow: ellipsis; /* Добавляет многоточие, если текст обрезается */
+        max-width: 120px;
+    }
+
+    .urbanist-<uniquifier > {
+        font-family: "Urbanist", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+    }
+
+</style>
+
+
+
+<div class="parent">
+    <div class="div1"> </div>
+    <div class="div2"> </div>
+    <div class="div3"> </div>
+    <div class="div4">
+
+        <p>Listen & Download these tracks!</p>
+        
+    
+    </div>
+    <div class="div5"> </div>
+    <div class="div6"> 
+
+        @for(int i = 0; i < 12; i++)
+        {
+            <div class="music-card">
+                <div class="placeh"></div>
+
+                <div class="music-info">
+                    <div class="song-name">Placeholder Song </div>
+                    <div class="artist-name">Artist</div>
+                </div>
+            </div>
+        }
+        
+
+
+
+
+    </div>
+    <div class="div7"> </div>
+</div>
