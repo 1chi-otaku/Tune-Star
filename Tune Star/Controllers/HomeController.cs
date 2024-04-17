@@ -1,27 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Tune_Star.BLL.Interfaces;
 
 namespace Tune_Star.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ISongService songService;
+        private readonly IGenreService genreService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ISongService songServ, IGenreService genreServ)
         {
-            _logger = logger;
+            songService = songServ;
+            genreService = genreServ;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await songService.GetSongs());
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
-      
     }
 }
