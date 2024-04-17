@@ -11,7 +11,7 @@ namespace Tune_Star.BLL.Infrastructure
 {
     public static class TuneStarContextExtensions
     {
-        public static void AddSoccerContext(this IServiceCollection services, string connection)
+        public static void AddSongTuneContext(this IServiceCollection services, string connection)
         {
             services.AddDbContext<TuneStarContext>(options => options.UseSqlServer(connection));
         }
