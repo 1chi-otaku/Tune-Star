@@ -12,6 +12,8 @@ namespace Tune_Star.DAL.Entities
         public string? Title { get; set; }
         public string? Artist { get; set; }
         public string? Img { get; set; }
+        public string? Path { get; set; }
+
         public int GenreId { get; set; }
         public Genres? Genre { get; set; }
 

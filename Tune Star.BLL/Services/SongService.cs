@@ -30,7 +30,8 @@ namespace Tune_Star.BLL.Services
                 Title = songDto.Title,
                 Artist = songDto.Artist,
                 Img = songDto.Img,
-                GenreId = songDto.GenreId
+                GenreId = songDto.GenreId,
+                Path = songDto.Path,
             };
             await Database.Songs.Create(song);
             await Database.Save();
@@ -44,7 +45,8 @@ namespace Tune_Star.BLL.Services
                 Title = songDto.Title,
                 Artist = songDto.Artist,
                 Img = songDto.Img,
-                GenreId = songDto.GenreId
+                GenreId = songDto.GenreId,
+                Path = songDto.Path
             };
             Database.Songs.Update(song);
             await Database.Save();
@@ -68,7 +70,8 @@ namespace Tune_Star.BLL.Services
                 Artist = song.Artist,
                 Img = song.Img,
                 GenreId = song.GenreId,
-                Genre = song.Genre?.Name
+                Genre = song.Genre?.Name,
+                Path = song.Path
             };
         }
 

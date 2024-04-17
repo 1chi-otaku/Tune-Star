@@ -18,6 +18,8 @@ namespace Tune_Star.BLL.DTO
         public string? Artist { get; set; }
         public string? Img { get; set; }
 
+        public string? Path { get; set; }
+
         public int GenreId { get; set; }
         public string? Genre { get; set; }
     }
