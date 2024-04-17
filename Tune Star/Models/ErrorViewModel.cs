@@ -1,9 +1,12 @@
+﻿using Microsoft.AspNetCore.Mvc;
+
 namespace Tune_Star.Models
 {
-    public class ErrorViewModel
+    public class ErrorViewModel : Controller
     {
-        public string? RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }

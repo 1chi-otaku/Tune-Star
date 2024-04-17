@@ -32,18 +32,20 @@
 
     .div3 {
         grid-area: 1 / 2 / 2 / 5;
-        height: 30px;
+        font-size: 48px;
 
     }
 
     .div4 {
-        font-size: 48px;
-        color:white;
+       
         grid-area: 2 / 2 / 3 / 5;
+        
     }
 
     .div5 {
         grid-area: 3 / 2 / 4 / 5;
+        font-size: 48px;
+        color: white;
 
     }
 
@@ -68,7 +70,7 @@
     }
 
     .placeh {
-            background-color: red;
+        background-color: #BA0909;
             width: 165px;
             height: 165px;
         }
@@ -77,11 +79,22 @@
     }
 
     .song-name, .artist-name {
-        margin: 5px 0;
+        margin: 3px 0;
         font-weight: bold;
         white-space: nowrap; 
-        text-overflow: ellipsis; /* Добавляет многоточие, если текст обрезается */
+        text-overflow: ellipsis; 
         max-width: 120px;
+    }
+
+
+    .song-name {
+        font-size: 11px;
+    }
+
+    .artist-name{
+        color: #C2B0B0;
+        font-weight: 460;
+        font-size: 12px;
     }
 
     .urbanist-<uniquifier > {
@@ -91,6 +104,67 @@
         font-style: normal;
     }
 
+    .regcontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%; 
+    }
+
+    button {
+        background-color: transparent;
+        border: 2px solid red;
+        color: white;
+        transition: border 0.3s ease;
+    }
+
+
+        button:hover {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, red, orange, yellow, lime, blue, indigo, violet) 1;
+        }
+
+    input[type="text"] {
+        background-color: red; 
+        color: white;
+        border: none; 
+        border-radius: 0; 
+        padding: 10px; 
+    }
+
+        input[type="text"]::placeholder {
+            color: #C0C0C0; 
+        }
+
+        input[type="text"]:focus {
+            background-color: #921A1A;
+            outline: none;
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, red, orange, yellow, lime, blue, indigo, violet) 1;
+            color: white;
+            box-shadow: none;
+        }
+
+    input[type="text"] {
+        transition: border-image 0.3s ease;
+    }
+
+    select {
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 0;
+        padding: 10px;
+        appearance: none;
+    }
+
+        select option {
+            color: black; 
+        }
+
+    
+
 </style>
 
 
@@ -98,14 +172,23 @@
 <div class="parent">
     <div class="div1"> </div>
     <div class="div2"> </div>
-    <div class="div3"> </div>
-    <div class="div4">
+    <div class="div3"> <p>Listen & Download these tracks!</p></div>
+    <div class="div4 d-flex align-items-center justify-content-center">
 
-        <p>Listen & Download these tracks!</p>
+        <div class="d-flex align-items-center w-50">
+            <input type="text" class="form-control w-100 me-2" placeholder="Search for song, artists, genre...">
+            <select class="form-select w-25">
+                <option value="1">All</option>
+                <option value="2">Pop</option>
+                <option value="3">Rock</option>
+            </select>
+        </div>
         
     
     </div>
-    <div class="div5"> </div>
+    <div class="div5">
+       
+    </div>
     <div class="div6"> 
 
         @for(int i = 0; i < 12; i++)
@@ -121,9 +204,14 @@
         }
         
 
-
-
-
     </div>
-    <div class="div7"> </div>
+    <div class="div7">
+        <div class="regcontainer">
+            <h2>Thanks for listening. Now join us.</h2>
+            <p>Download and Upload music for free!</p>
+            <button >Create Account</button>
+
+        </div>
+    
+    </div>
 </div>
