@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="EF\" />
-    <Folder Include="Entities\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
