@@ -14,6 +14,8 @@ namespace Tune_Star.DAL.Entities
 
         public string? Password { get; set; }
 
+        public int Status { get; set; }
+
         public string? Salt { get; set; }
     }
 }

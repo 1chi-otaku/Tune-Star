@@ -21,6 +21,8 @@ namespace Tune_Star.BLL.DTO
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character")]
         public string? Password { get; set; }
 
+        public int Status { get; set; }
+
         public string? Salt { get; set; }
 
 
