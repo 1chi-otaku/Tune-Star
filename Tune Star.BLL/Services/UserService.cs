@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Soccer.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Tune_Star.BLL.DTO;
@@ -24,13 +26,34 @@ namespace Tune_Star.BLL.Services
 
         public async Task CreateUser(UserDTO userDto)
         {
+            byte[] saltbuf = new byte[16];
+
+            RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(saltbuf);
+
+            StringBuilder sb = new StringBuilder(16);
+            for (int i = 0; i < 16; i++)
+                sb.Append(string.Format("{0:X2}", saltbuf[i]));
+            string salt = sb.ToString();
+
+            //переводим пароль в байт-массив  
+            byte[] password = Encoding.Unicode.GetBytes(salt + userDto.Password);
+
+            //вычисляем хеш-представление в байтах  
+            byte[] byteHash = SHA256.HashData(password);
+
+            StringBuilder hash = new StringBuilder(byteHash.Length);
+            for (int i = 0; i < byteHash.Length; i++)
+                hash.Append(string.Format("{0:X2}", byteHash[i]));
+
+
             var user = new Users
             {
                 Id = userDto.Id,
                 Login = userDto.Login,
-                Password = userDto.Password,
+                Password = hash.ToString(),
                 Status = userDto.Status,
-                Salt = userDto.Salt,
+                Salt = salt,
             };
             await Database.Users.Create(user);
             await Database.Save();

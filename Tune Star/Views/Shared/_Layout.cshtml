@@ -38,13 +38,17 @@
                 </a>
                 
                 <div class="d-flex align-items-center">
-                    <button class="me-3">Sign in</button>
+                    <button class="me-3" onclick="redirectToLogin()">Sign in</button>
                     <button class="me-3" onclick="redirectToRegister()">Create Account</button>
                 </div>
 
                 <script>
                     function redirectToRegister() {
                         window.location.href = '@Url.Action("Register", "Users")';
+                    }
+
+                    function redirectToLogin() {
+                        window.location.href = '@Url.Action("Login", "Users")';
                     }
                 </script>
             </div>
