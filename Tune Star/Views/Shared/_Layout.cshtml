@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Tune_Star</title>
+    <title>@ViewData["Title"] - Tune Star!</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Tune_Star.styles.css" asp-append-version="true" />
@@ -30,7 +30,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-#131212 border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-#131212 box-shadow mb-3">
             <div class="container-fluid d-flex justify-content-between align-items-center" >
                 <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index" style="display: flex; align-items: center;">
                     <img src="@Url.Content("~/icons/logo1.png")" id="navbar-img" alt="Логотип" style="width: 50px; height: auto;" onmouseover="changeStyleAndImage('hovered')" onmouseout="changeStyleAndImage('normal')">
@@ -39,8 +39,14 @@
                 
                 <div class="d-flex align-items-center">
                     <button class="me-3">Sign in</button>
-                    <button class="me-3">Create Account</button>
+                    <button class="me-3" onclick="redirectToRegister()">Create Account</button>
                 </div>
+
+                <script>
+                    function redirectToRegister() {
+                        window.location.href = '@Url.Action("Register", "Users")';
+                    }
+                </script>
             </div>
 
 

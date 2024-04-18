@@ -26,32 +26,32 @@ namespace Tune_Star.DAL.Repositories
 
         public async Task<Genres> Get(int id)
         {
-            Genres? team = await db.Genres.FindAsync(id);
-            return team!;
+            Genres? genre = await db.Genres.FindAsync(id);
+            return genre!;
         }
 
         public async Task<Genres> Get(string name)
         {
-            var teams = await db.Genres.Where(a => a.Name == name).ToListAsync();
-            Genres? team = teams?.FirstOrDefault();
-            return team!;
+            var genres = await db.Genres.Where(a => a.Name == name).ToListAsync();
+            Genres? genre = genres?.FirstOrDefault();
+            return genre!;
         }
 
-        public async Task Create(Genres team)
+        public async Task Create(Genres genre)
         {
-            await db.Genres.AddAsync(team);
+            await db.Genres.AddAsync(genre);
         }
 
-        public void Update(Genres team)
+        public void Update(Genres genre)
         {
-            db.Entry(team).State = EntityState.Modified;
+            db.Entry(genre).State = EntityState.Modified;
         }
 
         public async Task Delete(int id)
         {
-            Genres? team = await db.Genres.FindAsync(id);
-            if (team != null)
-                db.Genres.Remove(team);
+            Genres? genre = await db.Genres.FindAsync(id);
+            if (genre != null)
+                db.Genres.Remove(genre);
         }
     }
 }
