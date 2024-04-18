@@ -4,11 +4,9 @@ namespace Tune_Star.Models
 {
     public class RegisterModel
     {
-        [Required(ErrorMessage = "Name is required!")]
-        [StringLength(32, MinimumLength = 3, ErrorMessage = "Name has to be from 3 to 32 characters long!")]
-        public string? Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Login is required!")]
+        [StringLength(32, MinimumLength = 3, ErrorMessage = "Login has to be from 3 to 32 characters long!")]
         public string? Login { get; set; }
 
         [Required(ErrorMessage = "Password is required")]

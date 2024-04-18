@@ -36,7 +36,13 @@
                     <img src="@Url.Content("~/icons/logo1.png")" id="navbar-img" alt="Логотип" style="width: 50px; height: auto;" onmouseover="changeStyleAndImage('hovered')" onmouseout="changeStyleAndImage('normal')">
                     <span id="tuneStar" style="margin-right: 10px;" onmouseover="changeStyleAndImage('hovered')" onmouseout="changeStyleAndImage('normal')">Tune st☆r</span>
                 </a>
-                
+
+                @if (Context.Session.GetString("Login") != null)
+                {
+                    <p class="welcome">Welcome, <b>@Context.Session.GetString("Login") ☆</b>!  </p>
+                }
+
+               
                 <div class="d-flex align-items-center">
                     @if (Context.Session.GetString("Login") != null)
                     {

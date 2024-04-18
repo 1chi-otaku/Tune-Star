@@ -40,7 +40,6 @@ namespace Tune_Star.Controllers
         public async Task<IActionResult> RegisterAsync(RegisterModel reg)
         {
 
-            if (reg.Name == reg.Login) ModelState.AddModelError("", "Login and Name can NOT be the same!");
 
 
             if (ModelState.IsValid)
@@ -65,19 +64,23 @@ namespace Tune_Star.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginModel logon)
         {
+
+            var users = userService.GetUsers().Result;
+            int numberOfUsers = users.Count();
+
+            if (numberOfUsers == 0 || logon.Login == null)
+            {
+                ModelState.AddModelError("", "Wrong login or password!");
+                return View(logon);
+            }
+
+            var user = userService.GetUser(logon.Login).Result;
+
+            if (user.Status < 1) ModelState.AddModelError("", "Your account has not been approved yet. Contact your administrator.");
+
             if (ModelState.IsValid)
             {
-                var users = userService.GetUsers().Result; 
-                int numberOfUsers = users.Count(); 
-
-                if (numberOfUsers == 0)
-                {
-                    ModelState.AddModelError("", "Wrong login or password!");
-                    return View(logon);
-                }
-
-                var user = userService.GetUser(logon.Login).Result;
-
+               
                 if (user != null)
                 {
                     string? salt = user.Salt;

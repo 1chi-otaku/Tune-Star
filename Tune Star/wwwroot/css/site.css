@@ -89,3 +89,10 @@ select {
     select option {
         color: white;
     }
+
+
+
+.welcome b{
+
+    color: red;
+}
