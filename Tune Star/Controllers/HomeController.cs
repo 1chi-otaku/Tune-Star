@@ -20,6 +20,12 @@ namespace Tune_Star.Controllers
             return View(await songService.GetSongs());
         }
 
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
 
     }
 }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Numerics;
+using System.Security.Cryptography;
+using System.Text;
 using Tune_Star.BLL.DTO;
 using Tune_Star.BLL.Interfaces;
 using Tune_Star.BLL.Services;
@@ -26,7 +29,6 @@ namespace Tune_Star.Controllers
         {
             return View();
         }
-
 
         public IActionResult RegistrationNotification()
         {
@@ -57,6 +59,51 @@ namespace Tune_Star.Controllers
             }
 
             return View(reg);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(LoginModel logon)
+        {
+            if (ModelState.IsValid)
+            {
+                var users = userService.GetUsers().Result; 
+                int numberOfUsers = users.Count(); 
+
+                if (numberOfUsers == 0)
+                {
+                    ModelState.AddModelError("", "Wrong login or password!");
+                    return View(logon);
+                }
+
+                var user = userService.GetUser(logon.Login).Result;
+
+                if (user != null)
+                {
+                    string? salt = user.Salt;
+  
+                    byte[] password = Encoding.Unicode.GetBytes(salt + logon.Password);
+
+                    byte[] byteHash = SHA256.HashData(password);
+
+                    StringBuilder hash = new StringBuilder(byteHash.Length);
+                    for (int i = 0; i < byteHash.Length; i++)
+                        hash.Append(string.Format("{0:X2}", byteHash[i]));
+
+                    if (user.Password != hash.ToString())
+                    {
+                        ModelState.AddModelError("", "Wrong login or password!");
+                        return View(logon);
+                    }
+
+                    HttpContext.Session.SetString("Login", user.Login);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else ModelState.AddModelError("", "Wrong login or password!");
+   
+            }
+            return View(logon);
         }
 
     }

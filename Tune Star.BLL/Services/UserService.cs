@@ -94,6 +94,22 @@ namespace Tune_Star.BLL.Services
             };
         }
 
+        public async Task<UserDTO> GetUser(string login)
+        {
+            var user = await Database.Users.Get(login);
+            if (user == null)
+                throw new Exception("Wrong user!");
+            return new UserDTO
+            {
+                Id = user.Id,
+                Login = user.Login,
+                Password = user.Password,
+                Status = user.Status,
+                Salt = user.Salt,
+            };
+
+        }
+
         // Automapper позволяет проецировать одну модель на другую, что позволяет сократить объемы кода и упростить программу.
 
         public async Task<IEnumerable<UserDTO>> GetUsers()
@@ -102,5 +118,6 @@ namespace Tune_Star.BLL.Services
             return mapper.Map<IEnumerable<Users>, IEnumerable<UserDTO>>(await Database.Users.GetAll());
         }
 
+      
     }
 }

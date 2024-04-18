@@ -45,13 +45,29 @@
         
 
     </div>
-    <div class="div7">
-        <div class="regcontainer">
-            <h2>Thanks for listening. Now join us.</h2>
-            <p>Download and Upload music for free!</p>
-            <button >Create Account</button>
+
+    @if (Context.Session.GetString("Login") != null)
+    {
+        <div class="div7">
+            <div class="regcontainer">
+                <h2>Upload your own music!</h2>
+                <p>Upload and share your own music on Tune Star!</p>
+                <button>Upload my song</button>
+            </div>
 
         </div>
-    
-    </div>
+    }
+    else
+    {
+      
+        <div class="div7">
+            <div class="regcontainer">
+                <h2>Thanks for listening. Now join us.</h2>
+                <p>Download and Upload music for free!</p>
+                <button>Create Account</button>
+            </div>
+
+        </div>
+    }
+
 </div>

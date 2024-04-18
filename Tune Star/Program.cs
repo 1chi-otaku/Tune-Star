@@ -16,6 +16,7 @@ builder.Services.AddTransient<ISongService, SongService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -38,6 +39,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+app.UseSession();
+
 
 app.UseAuthorization();
 

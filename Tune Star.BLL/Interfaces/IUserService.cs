@@ -13,6 +13,7 @@ namespace Tune_Star.BLL.Interfaces
         Task UpdateUser(UserDTO userDto);
         Task DeleteUser(int id);
         Task<UserDTO> GetUser(int id);
+        Task<UserDTO> GetUser(string login);
         Task<IEnumerable<UserDTO>> GetUsers();
     }
 }

@@ -38,18 +38,29 @@
                 </a>
                 
                 <div class="d-flex align-items-center">
-                    <button class="me-3" onclick="redirectToLogin()">Sign in</button>
-                    <button class="me-3" onclick="redirectToRegister()">Create Account</button>
+                    @if (Context.Session.GetString("Login") != null)
+                    {
+                        <button class="me-3" onclick="redirectToLogin()">Upload</button>
+                        <button class="me-3" onclick="redirectToLogOut()">Logout</button>
+                    }
+                    else{
+                        <button class="me-3" onclick="redirectToLogin()">Sign in</button>
+                        <button class="me-3" onclick="redirectToRegister()">Create Account</button>
+                    }
+                  
                 </div>
 
                 <script>
                     function redirectToRegister() {
                         window.location.href = '@Url.Action("Register", "Users")';
                     }
-
                     function redirectToLogin() {
                         window.location.href = '@Url.Action("Login", "Users")';
                     }
+                    function redirectToLogOut() {
+                        window.location.href = '@Url.Action("Logout", "Home")';
+                    }
+
                 </script>
             </div>
 
