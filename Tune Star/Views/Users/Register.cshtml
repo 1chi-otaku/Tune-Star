@@ -29,10 +29,9 @@
         background-color: red;
         color: white;
         padding: 10px;
-        border: 3px solid #131212; /* Добавляем границу вокруг поля ввода */
-        border-radius: .25rem; /* Округляем углы границы */
-        padding: .375rem .75rem; /* Добавляем отступы вокруг текста внутри поля ввода */
-        line-height: 1.5; /* Устанавливаем высоту строки для текста внутри поля ввода */
+        border: 3px solid #131212;
+        padding: .375rem .75rem; 
+        line-height: 1.5; 
     }
 
         input[type="text"]::placeholder,
@@ -57,8 +56,25 @@
 
    label{
         color: white;
-
+        font-weight: 600;
    }
+
+    input[type="submit"]{
+        background-color: transparent;
+        border: 2px solid black;
+        color: white;
+        transition: border 0.3s ease;
+        margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, orange, yellow, lime, blue, indigo, violet) 1;
+    }
+
+
+
+
 
     
 </style>
@@ -90,7 +106,7 @@
                     <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Check in" class="btn btn-primary" />
+                    <input type="submit" value="Hop on!" />
                 </div>
             </form>
         </div>
