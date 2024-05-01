@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 @Html.Label("Title:")
@@ -27,9 +27,17 @@
                 <select asp-for="GenreId" class="form-control" asp-items="ViewBag.ListTeams as SelectList"></select>
             </div>
             <div class="form-group">
+                @Html.Label("Image:")
+                <input type="file" name="uploadedFile" class="form-control" accept=".png, .jpg, .jpeg" />
+            </div>
+            <div class="form-group">
+                @Html.Label("Song:")
+                <input type="file" name="uploadedSong" class="form-control" accept=".mp3, audio/*" />
+            </div>
+            <div class="form-group">
+
                 <input type="submit" value="Add" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-

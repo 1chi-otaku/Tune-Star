@@ -50,7 +50,7 @@
                         {
                             <button class="me-3" onclick="redirectToPanel()">Control Panel</button>
                         }
-                        <button class="me-3" onclick="redirectToLogin()">Upload</button>
+                        <button class="me-3" onclick="redirectToCreate()">Upload</button>
                         <button class="me-3" onclick="redirectToLogOut()">Logout</button>
 
                     }
@@ -73,6 +73,9 @@
                     }
                     function redirectToPanel() {
                         window.location.href = '@Url.Action("ApplicationList", "Administrator")';
+                    }
+                    function redirectToCreate() {
+                        window.location.href = '@Url.Action("Create", "Song")';
                     }
 
                 </script>

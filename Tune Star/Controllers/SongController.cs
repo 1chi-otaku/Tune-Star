@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using Tune_Star.BLL.DTO;
 using Tune_Star.BLL.Interfaces;
-using Tune_Star.BLL.Services;
+
 
 namespace Tune_Star.Controllers
 {
     public class SongController : Controller
     {
         private readonly ISongService songService;
+        private readonly IGenreService genreService;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public SongController(ISongService songServ, IWebHostEnvironment webHostEnvironment)
+        public SongController(ISongService songServ, IWebHostEnvironment webHostEnvironment, IGenreService genreService)
         {
             songService = songServ;
             _webHostEnvironment = webHostEnvironment;
+            this.genreService = genreService;
         }
 
 
@@ -50,6 +52,44 @@ namespace Tune_Star.Controllers
             {
                 return NotFound();
             }
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            ViewBag.ListTeams = new SelectList(await genreService.GetGenres(), "Id", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(SongDTO song, IFormFile uploadedFile, IFormFile uploadedSong)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string path = "/pictures/" + uploadedFile.FileName;
+
+                using (var fileStream = new FileStream(_webHostEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+
+                song.Img = path;
+
+                string songPath = "/music/" + uploadedSong.FileName;
+
+                using (var fileStream = new FileStream(_webHostEnvironment.WebRootPath + songPath, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+
+                song.Path = songPath;
+
+                await songService.CreateSong(song);
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.ListTeams = new SelectList(await genreService.GetGenres(), "Id", "Name", song.GenreId);
+            return View(song);
         }
 
     }
