@@ -34,7 +34,7 @@
         @foreach (var item in Model)
         {
             <div class="music-card">
-                <img src="@item.Img" alt="Song Image" style="max-width: 165px; max-height: 165px;">
+                <img src="@item.Img" alt="Song Image" style="max-width: 165px; max-height: 165px; width:165px; height:165px;">
 
                 <div class="music-info">
                     <a asp-controller="Song" asp-action="Details" asp-route-id="@item.Id">@item.Title</a>

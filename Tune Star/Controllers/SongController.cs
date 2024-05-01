@@ -92,5 +92,23 @@ namespace Tune_Star.Controllers
             return View(song);
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                await songService.DeleteSong(id);
+                return View("~/Views/Home/Index.cshtml", await songService.GetSongs());
+            }
+            catch (ValidationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+
     }
 }
