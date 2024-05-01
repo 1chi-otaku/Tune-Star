@@ -37,7 +37,7 @@
                 <img src="@item.Img" alt="Song Image" style="max-width: 165px; max-height: 165px;">
 
                 <div class="music-info">
-                    <div class="song-name"> @item.Title </div>
+                    <a asp-controller="Song" asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
                     <div class="artist-name"> @item.Artist</div>
                 </div>
             </div>

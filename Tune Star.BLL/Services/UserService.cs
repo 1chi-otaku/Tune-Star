@@ -69,7 +69,16 @@ namespace Tune_Star.BLL.Services
                 Status = userDto.Status,
                 Salt = userDto.Salt,
             };
-            Database.Users.Update(user);
+            var existingUser = await Database.Users.Get(userDto.Id);
+            if (existingUser == null)
+            {
+                throw new Exception("Пользователь не найден");
+            }
+            existingUser.Login = user.Login;
+            existingUser.Password = user.Password;
+            existingUser.Status = user.Status;
+            existingUser.Salt = user.Salt;
+            Database.Users.Update(existingUser);
             await Database.Save();
         }
 

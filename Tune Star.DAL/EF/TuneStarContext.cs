@@ -36,7 +36,7 @@ namespace Tune_Star.DAL.EF
                     new Songs { GenreId = 6, Genre = videoGameMusic, Title = "Feathers", Artist = "Ryukishi07", Img = "/pictures/Feathers.png", Path = "/music/Feathers.mp3" },
                     new Songs { GenreId = 4, Genre = funk, Title = "The Whims Of Fate", Artist = "Lyn Inaizumi", Img = "/pictures/The Whims Of Fate.png", Path = "/music/The Whims Of Fate.mp3" },
                     new Songs { GenreId = 5, Genre = jpop, Title = "Watashi Dake Yuurei", Artist = "Lowphonic", Img = "/pictures/WatashiDakeYuurei.png", Path = "/music/Watashi Dake Yuurei.mp3" },
-                    new Songs { GenreId = 2, Genre = jazz, Title = "Billie Jean", Artist = "Michael Jackson", Img = "/pictures/Billie Jean.png", Path = "/musicBillie Jean.mp3" }
+                    new Songs { GenreId = 2, Genre = jazz, Title = "Billie Jean", Artist = "Michael Jackson", Img = "/pictures/Billie Jean.png", Path = "/music/Billie Jean.mp3" }
                 );
 
                 SaveChanges();

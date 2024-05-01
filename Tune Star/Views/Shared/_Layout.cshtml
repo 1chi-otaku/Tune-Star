@@ -45,9 +45,14 @@
                
                 <div class="d-flex align-items-center">
                     @if (Context.Session.GetString("Login") != null)
-                    {
+                    {    
+                        @if(Context.Session.GetString("Login") == "admin")
+                        {
+                            <button class="me-3" onclick="redirectToPanel()">Control Panel</button>
+                        }
                         <button class="me-3" onclick="redirectToLogin()">Upload</button>
                         <button class="me-3" onclick="redirectToLogOut()">Logout</button>
+
                     }
                     else{
                         <button class="me-3" onclick="redirectToLogin()">Sign in</button>
@@ -65,6 +70,9 @@
                     }
                     function redirectToLogOut() {
                         window.location.href = '@Url.Action("Logout", "Home")';
+                    }
+                    function redirectToPanel() {
+                        window.location.href = '@Url.Action("ApplicationList", "Administrator")';
                     }
 
                 </script>
