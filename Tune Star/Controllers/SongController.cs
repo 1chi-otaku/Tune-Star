@@ -63,6 +63,63 @@ namespace Tune_Star.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(SongDTO song, IFormFile uploadedFile, IFormFile uploadedSong)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string path = "/pictures/" + uploadedFile.FileName;
+
+                using (var fileStream = new FileStream(_webHostEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+
+                song.Img = path;
+
+                string songPath = "/music/" + uploadedSong.FileName;
+
+                using (var fileStream = new FileStream(_webHostEnvironment.WebRootPath + songPath, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+
+                song.Path = songPath;
+
+                await songService.CreateSong(song);
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.ListTeams = new SelectList(await genreService.GetGenres(), "Id", "Name", song.GenreId);
+            return View(song);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                await songService.DeleteSong(id);
+                return View("~/Views/Home/Index.cshtml", await songService.GetSongs());
+            }
+            catch (ValidationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            ViewBag.ListTeams = new SelectList(await genreService.GetGenres(), "Id", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SongDTO song, IFormFile uploadedFile, IFormFile uploadedSong )
         {
 

@@ -25,12 +25,12 @@
 
     .div1 {
         grid-area: 1 / 1 / 4 / 4;
-        padding: 10px; /* Добавление отступов внутри дива */
+        padding: 10px; 
     }
 
     .div2 {
         grid-area: 1 / 4 / 4 / 7;
-        padding: 10px; /* Добавление отступов внутри дива */
+        padding: 10px; 
     }
 
     .div3 {
@@ -55,6 +55,10 @@
             <source src="@Model.Path" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
+        @if (Context.Session.GetString("Login") == "admin")
+        {
+            <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+        }
     </div>
     <div class="div3">
 
@@ -63,7 +67,6 @@
             <div class="div7">
                 <div class="regcontainer">
                     <h2>Download this music for free!!</h2>
-                    @* Уберите начальный символ '/' *@
                     <a href="@Url.Action("Download", "Song", new { filePath = Model.Path.TrimStart('/') })" class="btn btn-primary">Download</a>
                 </div>
             </div>
