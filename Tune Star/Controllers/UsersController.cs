@@ -40,8 +40,6 @@ namespace Tune_Star.Controllers
         public async Task<IActionResult> RegisterAsync(RegisterModel reg)
         {
 
-
-
             if (ModelState.IsValid)
             {
                 int status = 0;
@@ -68,7 +66,7 @@ namespace Tune_Star.Controllers
             var users = userService.GetUsers().Result;
             int numberOfUsers = users.Count();
 
-            if (numberOfUsers == 0 || logon.Login == null)
+            if (numberOfUsers == 0 || logon.Login == null || users == null)
             {
                 ModelState.AddModelError("", "Wrong login or password!");
                 return View(logon);
